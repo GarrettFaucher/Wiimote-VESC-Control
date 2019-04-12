@@ -1,33 +1,29 @@
 var fs = require('fs'); //require filesystem module
-
-var newSensorData = false;
+const {PythonShell} = require('python-shell');
 
 var wiiFilePath = 'WiimoteInput.py';
 
-const {PythonShell} = require('python-shell');
-
-function getWiiData(){
-  var wiiMote = new PythonShell(wiiFilePath);
-  var foundData;
-
-  return new Promise(function(resolve,reject){
-    wiiMote.on('message', function(message){
-      resolve(message);
-    })
-
-    wiiMote.end(function(err){
-      if(err){
-        reject(err);
-      };
-    });
-  });
-
+function handleWiiData(message){
+  console.log("Handling data: "+message);
 }
 
-setInterval(function(){
-  var wiiGetter = getWiiData();
-  wiiGetter.then(function(result){
-    console.log("Recieved sensor data: "+result);
+function monitorWiimote(){
+  let options = {
+    pythonPath: 'python2',
+    scriptPath: './'
+  };
+
+  let pyshell = new PythonShell(wiiFilePath, options);
+
+  pyshell.on('message', function (message) {
+    // received a message sent from the Python script (a simple "print" statement)
+    handleWiiData(message);
   });
-  newSensorData = true;
-},10);
+
+  // end the input stream and allow the process to exit
+  pyshell.end(function (err,code,signal) {
+    monitorWiimote() //relaunch since stopped
+  });
+}
+
+monitorWiimote(); //run WiimoteInput.py and send any output to handleWiiData()

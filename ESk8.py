@@ -11,6 +11,3 @@ import pyvesc
 # Global Variables
 WIIMOTE_MAC = "00:1C:BE:25:8B:36"
 POWER_DOWN = ["sudo", "shutdown", "-h", "now"]
-
-# GPIO PINS
-MOTOR = 00

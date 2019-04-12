@@ -1,6 +1,3 @@
-
-
-# WIIMOTE MAC 00:1C:BE:25:8B:36
 # Code sourced from
 # https://www.raspberrypi-spy.co.uk/2013/02/nintendo-wii-remote-python-and-the-raspberry-pi/
 # Modified by Garrett Faucher and Shauna Kimura
@@ -9,6 +6,8 @@ import cwiid
 import time
 import sys
 
+# sendData method takes a string as input.
+# Performs like normal print statement, but also flushes for main.js to
 def sendData(words):
     print words
     sys.stdout.flush()
@@ -19,13 +18,13 @@ sendData('CONNECT_NOW')
 sys.stdout.flush()
 time.sleep(1)
 
-# Connect to the Wii Remote. If it times out
-# then quit.
+# Connect to the Wii Remote. If it times out then quit.
 try:
   wii=cwiid.Wiimote()
 except RuntimeError:
   quit()
 
+# Rumble for tactile signal that controller has been connected.
 wii.rumble = 1
 time.sleep(0.4)
 wii.rumble = 0
@@ -37,8 +36,7 @@ while True:
 
   buttons = wii.state['buttons']
 
-  # If Plus and Minus buttons pressed
-  # together then rumble and quit.
+  # If Plus and Minus buttons pressed together then rumble and quit.
   if (buttons - cwiid.BTN_PLUS - cwiid.BTN_MINUS == 0):
     sendData('DISCONNECTED')
     wii.rumble = 1
@@ -46,9 +44,8 @@ while True:
     wii.rumble = 0
     exit(wii)
 
-  # Check if other buttons are pressed by
-  # doing a bitwise AND of the buttons number
-  # and the predefined constant for that button.
+  # Check if other buttons are pressed by doing a bitwise AND of the buttons
+  # number and the predefined constant for that button.
   if (buttons & cwiid.BTN_LEFT):
     sendData('LEFT')
     time.sleep(button_delay)

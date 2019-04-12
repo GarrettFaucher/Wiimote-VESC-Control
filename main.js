@@ -4,7 +4,52 @@ const {PythonShell} = require('python-shell');
 var wiiFilePath = 'WiimoteInput.py';
 
 function handleWiiData(message){
-  console.log("Handling data: "+message);
+  switch (message) {
+   case 'LEFT':
+
+      break;
+
+   case 'RIGHT':
+
+      break;
+
+   case 'UP':
+
+      break;
+
+   case 'DOWN':
+
+      break;
+
+   case '1':
+
+      break;
+
+   case '2':
+
+      break;
+
+   case 'A':
+
+      break;
+
+   case 'B':
+
+      break;
+
+   case 'HOME':
+
+      break;
+
+   case 'MINUS':
+
+      break;
+
+   case 'PLUS':
+
+      break;
+
+  }
 }
 
 function monitorWiimote(){

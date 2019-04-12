@@ -15,7 +15,7 @@ def sendData(words):
 
 button_delay = 0.1
 
-sendData('Press 1 + 2 on your Wiimote now...')
+sendData('CONNECT_NOW')
 sys.stdout.flush()
 time.sleep(1)
 
@@ -24,14 +24,12 @@ time.sleep(1)
 try:
   wii=cwiid.Wiimote()
 except RuntimeError:
-  sendData("Error opening wiimote connection")
   quit()
 
 wii.rumble = 1
 time.sleep(0.4)
 wii.rumble = 0
-sendData('Wii Remote connected...\n')
-sendData('Press PLUS and MINUS together to disconnect and quit.\n')
+sendData('CONNECTED')
 
 wii.rpt_mode = cwiid.RPT_BTN
 
@@ -42,7 +40,7 @@ while True:
   # If Plus and Minus buttons pressed
   # together then rumble and quit.
   if (buttons - cwiid.BTN_PLUS - cwiid.BTN_MINUS == 0):
-    sendData('\nClosing connection ...')
+    sendData('DISCONNECTED')
     wii.rumble = 1
     time.sleep(1)
     wii.rumble = 0
@@ -52,19 +50,19 @@ while True:
   # doing a bitwise AND of the buttons number
   # and the predefined constant for that button.
   if (buttons & cwiid.BTN_LEFT):
-    sendData('Left')
+    sendData('LEFT')
     time.sleep(button_delay)
 
   if(buttons & cwiid.BTN_RIGHT):
-    sendData('Right')
+    sendData('RIGHT')
     time.sleep(button_delay)
 
   if (buttons & cwiid.BTN_UP):
-    sendData('Up')
+    sendData('UP')
     time.sleep(button_delay)
 
   if (buttons & cwiid.BTN_DOWN):
-    sendData('Down')
+    sendData('DOWN')
     time.sleep(button_delay)
 
   if (buttons & cwiid.BTN_1):
@@ -84,13 +82,13 @@ while True:
     time.sleep(button_delay)
 
   if (buttons & cwiid.BTN_HOME):
-    sendData('Home')
+    sendData('HOME')
     time.sleep(button_delay)
 
   if (buttons & cwiid.BTN_MINUS):
-    sendData('Minus')
+    sendData('MINUS')
     time.sleep(button_delay)
 
   if (buttons & cwiid.BTN_PLUS):
-    sendData('Plus')
+    sendData('PLUS')
     time.sleep(button_delay)

@@ -1,9 +1,13 @@
+# Code sourced from
+# https://www.raspberrypi-spy.co.uk/2013/02/nintendo-wii-remote-python-and-the-raspberry-pi/
+# Modified by Garrett Faucher and Shauna Kimura
+
 import cwiid
 import time
 
 button_delay = 0.1
 
-print 'Press 1 + 2 on your Wii Remote now ...'
+print 'Press 1 + 2 on your Wiimote now...'
 time.sleep(1)
 
 # Connect to the Wii Remote. If it times out
@@ -15,7 +19,6 @@ except RuntimeError:
   quit()
 
 print 'Wii Remote connected...\n'
-print 'Press some buttons!\n'
 print 'Press PLUS and MINUS together to disconnect and quit.\n'
 
 wii.rpt_mode = cwiid.RPT_BTN

@@ -1,9 +1,11 @@
+# WIIMOTE MAC 00:1C:BE:25:8B:36
 # Code sourced from
 # https://www.raspberrypi-spy.co.uk/2013/02/nintendo-wii-remote-python-and-the-raspberry-pi/
 # Modified by Garrett Faucher and Shauna Kimura
 
 import cwiid
 import time
+import sys
 
 button_delay = 0.1
 
@@ -18,6 +20,9 @@ except RuntimeError:
   print "Error opening wiimote connection"
   quit()
 
+wii.rumble = 1
+time.sleep(0.4)
+wii.rumble = 0
 print 'Wii Remote connected...\n'
 print 'Press PLUS and MINUS together to disconnect and quit.\n'
 

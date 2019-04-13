@@ -16,7 +16,7 @@ function handleWiiData(message){
       break;
 
    case 'RIGHT':
-
+      // ADD A CASE HERE
       break;
 
    case 'UP':

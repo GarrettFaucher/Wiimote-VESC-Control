@@ -19,3 +19,5 @@ Libraries: cwiid, pyvesc, pigpio
 | 6374 190KV Motor | $90 |
 | Motor Mount | $18 |
 | Pulley System | $40 |
+|  |  |
+| Total | ~$750 |

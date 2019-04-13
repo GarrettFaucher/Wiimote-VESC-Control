@@ -7,7 +7,7 @@ import time
 import sys
 
 # sendData method takes a string as input.
-# Performs like normal print statement, but also flushes for main.js to
+# Performs like normal print statement, but also flushes for main.js too
 def sendData(words):
     print words
     sys.stdout.flush()
@@ -15,7 +15,6 @@ def sendData(words):
 button_delay = 0.1
 
 sendData('CONNECT_NOW')
-sys.stdout.flush()
 time.sleep(1)
 
 # Connect to the Wii Remote. If it times out then quit.

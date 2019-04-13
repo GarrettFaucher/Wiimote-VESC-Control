@@ -6,53 +6,54 @@ var fs = require('fs'); //require filesystem module
 const {PythonShell} = require('python-shell'); // Import python-shell
 
 var wiiFilePath = 'WiimoteInput.py'; // Input file name
+var vescFilePath = 'VESCRecieve.py'; // Output file name
 
 // Depending on the button pressed on Wiimote, different signals are passed
 // to VESCRecieve.py for VESC control.
 function handleWiiData(message){
   switch (message) {
    case 'LEFT':
-
+      sendData('LEFT');
       break;
 
    case 'RIGHT':
-      // ADD A CASE HERE
+      sendData('RIGHT');
       break;
 
    case 'UP':
-
+      sendData('UP');
       break;
 
    case 'DOWN':
-
+      sendData('DOWN');
       break;
 
    case '1':
-
+      sendData('1');
       break;
 
    case '2':
-
+      sendData('2');
       break;
 
    case 'A':
-
+      sendData('A');
       break;
 
    case 'B':
-
+      sendData('B');
       break;
 
    case 'HOME':
-
+      sendData('HOME');
       break;
 
    case 'MINUS':
-
+      sendData('MINUS');
       break;
 
    case 'PLUS':
-
+      sendData('PLUS');
       break;
 
   }
@@ -74,8 +75,14 @@ function monitorWiimote(){
 
   // End the input stream and allow the process to exit
   pyshell.end(function (err,code,signal) {
-    monitorWiimote() //relaunch since stopped
+    monitorWiimote() // Relaunch since disconnected
   });
 }
+
+
+function sendData(data){
+  console.log(data);
+}
+
 
 monitorWiimote(); // Run WiimoteInput.py and send any output to handleWiiData()

@@ -3,6 +3,7 @@ This library allows for the control of an electric skateboard motor using a VESC
 
 ## Requirements
 Python Libraries: cwiid, pyvesc, pigpio
+
 Other: Node.js
 
 ## Part List

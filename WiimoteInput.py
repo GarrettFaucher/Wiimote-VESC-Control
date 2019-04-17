@@ -45,19 +45,19 @@ while True:
 
   # Check if other buttons are pressed by doing a bitwise AND of the buttons
   # number and the predefined constant for that button.
-  if (buttons & cwiid.BTN_LEFT):
+  if (buttons - cwiid.BTN_LEFT - cwiid.BTN_B == 0):
     sendData('LEFT')
     time.sleep(button_delay)
 
-  if(buttons & cwiid.BTN_RIGHT):
+  if (buttons - cwiid.BTN_RIGHT - cwiid.BTN_B == 0):
     sendData('RIGHT')
     time.sleep(button_delay)
 
-  if (buttons & cwiid.BTN_UP):
+  if (buttons - cwiid.BTN_UP - cwiid.BTN_B == 0):
     sendData('UP')
     time.sleep(button_delay)
 
-  if (buttons & cwiid.BTN_DOWN):
+  if (buttons - cwiid.BTN_DOWN - cwiid.BTN_B == 0):
     sendData('DOWN')
     time.sleep(button_delay)
 
@@ -73,9 +73,9 @@ while True:
     sendData('A')
     time.sleep(button_delay)
 
-  if (buttons & cwiid.BTN_B):
-    sendData('B')
-    time.sleep(button_delay)
+  # if (buttons & cwiid.BTN_B):
+  #   sendData('B')
+  #   time.sleep(button_delay)
 
   if (buttons & cwiid.BTN_HOME):
     sendData('HOME')

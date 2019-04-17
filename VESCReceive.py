@@ -45,3 +45,13 @@ while True:
     else:
         sys.stdout.write(str(newInput))
         sys.stdout.flush()
+
+
+// Motor Control
+while True:
+    // Brake
+    if OUTPUT.A == pressed:
+        pyvesc.SetCurrentBrake(???)
+    if OUTPUT.B == pressed and OUTPUT.DOWN == pressed:
+        pyvesc.
+    

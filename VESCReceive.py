@@ -4,6 +4,7 @@ import time
 import serial
 import pyvesc
 import sys
+import RPi.GPIO as GPIO
 from subprocess import Popen, PIPE
 from threading  import Thread
 from queue      import Queue, Empty

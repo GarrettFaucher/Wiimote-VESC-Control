@@ -4,7 +4,6 @@ import time
 import serial
 import pyvesc
 import sys
-import RPi.GPIO as GPIO
 from subprocess import Popen, PIPE
 from threading  import Thread
 from queue      import Queue, Empty
@@ -12,13 +11,6 @@ from queue      import Queue, Empty
 # Global Variables
 WIIMOTE_MAC = "00:1C:BE:25:8B:36"
 POWER_DOWN = ["sudo", "shutdown", "-h", "now"]
-GPIO_OUT = 6
-
-GPIO.setmode(GPIO.BCM)
-GPIO.setwarnings(False)
-GPIO.setup(GPIO_OUT, GPIO.OUT)
-
-GPIO.output(GPIO_OUT, pyvesc.SetCurrentBrake(1))
 
 # EXPERIMENTAL CODE ALL BELOW
 BRAKE_ONE = pyvesc.SetCurrentBrake(10)

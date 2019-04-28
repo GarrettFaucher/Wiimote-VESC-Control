@@ -25,7 +25,7 @@ SPEED_FOUR = pyvesc.SetDutyCycle(100000)
 # Create a serial object to send serial messages
 ser = serial.Serial(
     port='/dev/serial0',
-    baudrate = 9600,
+    baudrate = 115200,
     parity=serial.PARITY_NONE,
     stopbits=serial.STOPBITS_ONE,
     bytesize=serial.EIGHTBITS,

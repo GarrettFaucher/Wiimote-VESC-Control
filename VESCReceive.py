@@ -69,19 +69,27 @@ while True:
     if not go:
         if OUTPUT.B == pressed and OUTPUT.BTN_DOWN == pressed:
             ser.write(pyvesc.encode(BRAKE_ONE))
+            print("Brake 1")
         if OUTPUT.B == pressed and OUTPUT.BTN_LEFT == pressed:
             ser.write(pyvesc.encode(BRAKE_TWO))
+            print("Brake 2")
         if OUTPUT.B == pressed and OUTPUT.BTN_UP == pressed:
             ser.write(pyvesc.encode(BRAKE_THREE))
+            print("Brake 3")
         if OUTPUT.B == pressed and OUTPUT.BTN_RIGHT == pressed:
             ser.write(pyvesc.encode(BRAKE_FOUR))
+            print("Brake 4")
     #Accel Mode
     if go:
         if OUTPUT.B == pressed and OUTPUT.BTN_DOWN == pressed:
             ser.write(pyvesc.encode(SPEED_ONE))
+            print("Accel 1")
         if OUTPUT.B == pressed and OUTPUT.BTN_LEFT == pressed:
             ser.write(pyvesc.encode(SPEED_TWO))
+            print("Accel 2")
         if OUTPUT.B == pressed and OUTPUT.BTN_UP == pressed:
             ser.write(pyvesc.encode(SPEED_THREE))
+            print("Accel 3")
         if OUTPUT.B == pressed and OUTPUT.BTN_RIGHT == pressed:
             ser.write(pyvesc.encode(SPEED_FOUR))
+            print("Accel 4")

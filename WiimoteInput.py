@@ -73,10 +73,6 @@ while True:
     sendData('A')
     time.sleep(button_delay)
 
-  # if (buttons & cwiid.BTN_B):
-  #   sendData('B')
-  #   time.sleep(button_delay)
-
   if (buttons & cwiid.BTN_HOME):
     sendData('HOME')
     time.sleep(button_delay)

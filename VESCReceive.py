@@ -48,7 +48,7 @@ enqueueOutputThread.daemon = True
 enqueueOutputThread.start()
 
 go = True
-i = 0
+tick = 0
 # Motor Control
 while True:
     try:
@@ -60,42 +60,42 @@ while True:
         sys.stdout.flush()
 
     # Is it Brake or Accel?
-    if newInput == "A" and go and i == 0:
+    if newInput == "A" and go and tick == 0:
         go = False
-        i = 4
-    elif newInput == "A" and not go and i == 0:
+        tick = 4
+    elif newInput == "A" and not go and tick == 0:
         go = True
-        i = 4
+        tick = 4
 
     #Brake Mode
     if not go:
         if newInput == "DOWN":
             ser.write(pyvesc.encode(BRAKE_ONE))
-            print("Brake 1")
+            print(" - Brake 1")
         if newInput == "LEFT":
             ser.write(pyvesc.encode(BRAKE_TWO))
-            print("Brake 2")
+            print(" - Brake 2")
         if newInput == "UP":
             ser.write(pyvesc.encode(BRAKE_THREE))
-            print("Brake 3")
+            print(" - Brake 3")
         if newInput == "RIGHT":
             ser.write(pyvesc.encode(BRAKE_FOUR))
-            print("Brake 4")
+            print(" - Brake 4")
 
     #Accel Mode
     if go:
         if newInput == "DOWN":
             ser.write(pyvesc.encode(SPEED_ONE))
-            print("Accel 1")
+            print(" - Accel 1")
         if newInput == "LEFT":
             ser.write(pyvesc.encode(SPEED_TWO))
-            print("Accel 2")
+            print(" - Accel 2")
         if newInput == "UP":
             ser.write(pyvesc.encode(SPEED_THREE))
-            print("Accel 3")
+            print(" - Accel 3")
         if newInput == "RIGHT":
             ser.write(pyvesc.encode(SPEED_FOUR))
-            print("Accel 4")
+            print(" - Accel 4")
 
-    if i > 0:
-        i -= 1
+    if tick > 0:
+        tick -= 1

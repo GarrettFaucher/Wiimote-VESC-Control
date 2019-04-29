@@ -1,10 +1,10 @@
 # Wiimote VESC Control
 This library allows for the control of an electric skateboard motor using a VESC that the user interfaces with using a Wiimote.
 
-## Requirements
-Python Libraries: cwiid, pyvesc, pigpio
+## Dependencies
+Python Libraries: cwiid, pyvesc
 
-Other: Node.js
+Other: Node.js, npm, pm2, python-shell
 
 ## Part List
 | Part | Cost in USD (approx) |

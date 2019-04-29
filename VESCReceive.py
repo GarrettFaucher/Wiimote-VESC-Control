@@ -35,35 +35,37 @@ ser = serial.Serial(
 def printOutput(message):
     print()
 
-def enqueue_output(out, queue):
+def enqueueOutput(out, queue):
     while True:
-        lines = out.readline()
+        lines = out.readline().decode('utf-8')
         out.flush()
         queue.put(lines)
 
 process = Popen(['/usr/bin/node', 'pipe.js'], stdout=PIPE)
 queue = Queue()
-thread = Thread(target=enqueue_output, args=(process.stdout, queue))
-thread.daemon = True
-thread.start()
+enqueueOutputThread = Thread(target=enqueueOutput, args=(process.stdout, queue))
+enqueueOutputThread.daemon = True
+enqueueOutputThread.start()
 
+go = True
+i = 0
+# Motor Control
 while True:
     try:
-        newInput = queue.get_nowait()
+        newInput = str(queue.get_nowait()).rstrip()
     except Empty:
         continue
     else:
-        sys.stdout.write(str(newInput))
+        sys.stdout.write(newInput)
         sys.stdout.flush()
 
-go = True
-# Motor Control
-while True:
     # Is it Brake or Accel?
-    if OUTPUT.A == pressed and go:
+    if newInput == "A" and go and i == 0:
         go = False
-    if OUTPUT.A == pressed and not go:
+        i = 4
+    elif newInput == "A" and not go and i == 0:
         go = True
+        i = 4
 
     #Brake Mode
     if not go:
@@ -79,6 +81,7 @@ while True:
         if newInput == "RIGHT":
             ser.write(pyvesc.encode(BRAKE_FOUR))
             print("Brake 4")
+
     #Accel Mode
     if go:
         if newInput == "DOWN":
@@ -93,3 +96,6 @@ while True:
         if newInput == "RIGHT":
             ser.write(pyvesc.encode(SPEED_FOUR))
             print("Accel 4")
+
+    if i > 0:
+        i -= 1

@@ -9,7 +9,7 @@ import sys
 # sendData method takes a string as input.
 # Performs like normal print statement, but also flushes for main.js too
 def sendData(words):
-    print words
+    print words.decode('utf-8')
     sys.stdout.flush()
 
 button_delay = 0.1

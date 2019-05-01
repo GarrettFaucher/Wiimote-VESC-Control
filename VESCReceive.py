@@ -99,6 +99,5 @@ while True:
     if newInput == "HOME":
             ser.write(pyvesc.encode(STOP))
 
-
     if tick > 0:
         tick -= 1

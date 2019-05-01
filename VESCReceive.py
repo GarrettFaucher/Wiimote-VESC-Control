@@ -13,27 +13,26 @@ WIIMOTE_MAC = "00:1C:BE:25:8B:36"
 POWER_DOWN = ["sudo", "shutdown", "-h", "now"]
 
 # EXPERIMENTAL CODE ALL BELOW
-BRAKE_ONE = pyvesc.SetCurrentBrake(10)
-BRAKE_TWO = pyvesc.SetCurrentBrake(100)
-BRAKE_THREE = pyvesc.SetCurrentBrake(10000)
-BRAKE_FOUR = pyvesc.SetCurrentBrake(100000)
-SPEED_ONE = pyvesc.SetDutyCycle(100)
-SPEED_TWO = pyvesc.SetDutyCycle(1000)
-SPEED_THREE = pyvesc.SetDutyCycle(10000)
-SPEED_FOUR = pyvesc.SetDutyCycle(100000)
+BRAKE_ONE = pyvesc.SetCurrentBrake(10000)
+BRAKE_TWO = pyvesc.SetCurrentBrake(20000)
+BRAKE_THREE = pyvesc.SetCurrentBrake(30000)
+BRAKE_FOUR = pyvesc.SetCurrentBrake(50000)
+SPEED_ONE = pyvesc.SetDutyCycle(10000)
+SPEED_TWO = pyvesc.SetDutyCycle(20000)
+SPEED_THREE = pyvesc.SetDutyCycle(30000)
+SPEED_FOUR = pyvesc.SetDutyCycle(50000)
+
+STOP = pyvesc.SetDutyCycle(0)
 
 # Create a serial object to send serial messages
 ser = serial.Serial(
     port='/dev/serial0',
-    baudrate = 115200,
+    baudrate = 9600,
     parity=serial.PARITY_NONE,
     stopbits=serial.STOPBITS_ONE,
     bytesize=serial.EIGHTBITS,
     timeout=1
 )
-
-def printOutput(message):
-    print()
 
 def enqueueOutput(out, queue):
     while True:
@@ -96,6 +95,10 @@ while True:
         if newInput == "RIGHT":
             ser.write(pyvesc.encode(SPEED_FOUR))
             print(" - Accel 4")
+
+    if newInput == "HOME":
+            ser.write(pyvesc.encode(STOP))
+
 
     if tick > 0:
         tick -= 1

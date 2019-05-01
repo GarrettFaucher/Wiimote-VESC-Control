@@ -32,9 +32,6 @@ ser = serial.Serial(
     timeout=1
 )
 
-def printOutput(message):
-    print()
-
 def enqueueOutput(out, queue):
     while True:
         lines = out.readline().decode('utf-8')

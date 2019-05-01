@@ -92,36 +92,30 @@ while True:
             changeDuty(SPEED_ONE)
 
         if newInput == "LEFT":
-            if oldInput = "DOWN":
-                for i in range(SPEED_ONE, SPEED_TWO):
+            if oldInput == "DOWN":
+                for i in range(SPEED_ONE/10, SPEED_TWO/10):
                     changeDuty(i)
-                    time.sleep(SLEEP_TIME)
             changeDuty(SPEED_TWO)
 
         if newInput == "UP":
             if oldinput == "LEFT":
-                for i in range(SPEED_TWO, SPEED_THREE):
+                for i in range(SPEED_TWO/10, SPEED_THREE/10):
                     changeDuty(i)
-                    time.sleep(SLEEP_TIME)
             if oldInput == "DOWN":
-                for i in range(SPEED_ONE, SPEED_THREE):
+                for i in range(SPEED_ONE/10, SPEED_THREE/10):
                     changeDuty(i)
-                    time.sleep(SLEEP_TIME)
             changeDuty(SPEED_THREE)
 
         if newInput == "RIGHT":
             if oldinput == "UP":
-                for i in range(SPEED_THREE, SPEED_FOUR):
+                for i in range(SPEED_THREE/10, SPEED_FOUR/10):
                     changeDuty(i)
-                    time.sleep(SLEEP_TIME)
             if oldinput == "LEFT":
-                for i in range(SPEED_TWO, SPEED_FOUR):
+                for i in range(SPEED_TWO/10, SPEED_FOUR/10):
                     changeDuty(i)
-                    time.sleep(SLEEP_TIME)
             if oldinput == "DOWN":
-                for i in range(SPEED_ONE, SPEED_FOUR):
+                for i in range(SPEED_ONE/10, SPEED_FOUR/10):
                     changeDuty(i)
-                    time.sleep(SLEEP_TIME)
             changeDuty(SPEED_FOUR)
 
     if newInput == "HOME":

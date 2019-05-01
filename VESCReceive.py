@@ -106,13 +106,30 @@ while True:
             print(" - Accel 2")
 
         if newInput == "UP":
-            for i in range(SPEED_TWO, SPEED_THREE):
-                changeDuty(i)
-                time.sleep(SLEEP_TIME) # CHANGE ME LATER
+            if oldinput == "LEFT":
+                for i in range(SPEED_TWO, SPEED_THREE):
+                    changeDuty(i)
+                    time.sleep(SLEEP_TIME) # CHANGE ME LATER
+            if oldInput == "DOWN":
+                for i in range(SPEED_ONE, SPEED_THREE):
+                    changeDuty(i)
+                    time.sleep(SLEEP_TIME) # CHANGE ME LATER
             changeDuty(SPEED_THREE)
             print(" - Accel 3")
 
         if newInput == "RIGHT":
+            if oldinput == "UP":
+                for i in range(SPEED_THREE, SPEED_FOUR):
+                    changeDuty(i)
+                    time.sleep(SLEEP_TIME) # CHANGE ME LATER
+            if oldinput == "LEFT":
+                for i in range(SPEED_TWO, SPEED_FOUR):
+                    changeDuty(i)
+                    time.sleep(SLEEP_TIME) # CHANGE ME LATER
+            if oldinput == "DOWN":
+                for i in range(SPEED_ONE, SPEED_FOUR):
+                    changeDuty(i)
+                    time.sleep(SLEEP_TIME) # CHANGE ME LATER
             changeDuty(SPEED_FOUR)
             print(" - Accel 4")
 

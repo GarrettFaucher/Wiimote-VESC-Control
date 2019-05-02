@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # Code for Rasberry Pi to interface with a VESC using a Wiimote
 
 import time

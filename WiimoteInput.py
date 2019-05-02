@@ -12,7 +12,7 @@ def sendData(words):
     print words.decode('utf-8')
     sys.stdout.flush()
 
-button_delay = 0.1
+button_delay = 0.05
 
 sendData('CONNECT_NOW')
 time.sleep(1)

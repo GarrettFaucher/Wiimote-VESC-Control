@@ -123,4 +123,8 @@ while True:
     if tick > 0:
         tick -= 1
 
+    if newInput == "DISCONNECTED":
+        exit()
+
+
     oldInput = newInput

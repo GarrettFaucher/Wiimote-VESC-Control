@@ -97,7 +97,7 @@ while True:
             changeDuty(SPEED_TWO)
 
         if newInput == "UP":
-            if oldinput == "LEFT":
+            if oldInput == "LEFT":
                 for i in range(int(SPEED_ONE/DIV_NUM), int(SPEED_ONE/DIV_NUM)):
                     changeDuty(i*DIV_NUM)
             if oldInput == "DOWN":
@@ -106,13 +106,13 @@ while True:
             changeDuty(SPEED_THREE)
 
         if newInput == "RIGHT":
-            if oldinput == "UP":
+            if oldInput == "UP":
                 for i in range(int(SPEED_ONE/DIV_NUM), int(SPEED_ONE/DIV_NUM)):
                     changeDuty(i*DIV_NUM)
-            if oldinput == "LEFT":
+            if oldInput == "LEFT":
                 for i in range(int(SPEED_ONE/DIV_NUM), int(SPEED_ONE/DIV_NUM)):
                     changeDuty(i*DIV_NUM)
-            if oldinput == "DOWN":
+            if oldInput == "DOWN":
                 for i in range(int(SPEED_ONE/DIV_NUM), int(SPEED_ONE/DIV_NUM)):
                     changeDuty(i*DIV_NUM)
             changeDuty(SPEED_FOUR)

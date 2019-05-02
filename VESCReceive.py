@@ -24,6 +24,8 @@ STOP = 0
 
 DIV_NUM = 10
 
+SLEEP_TIME = 0.01
+
 # Create a serial object to send serial messages
 ser = serial.Serial(
     port='/dev/serial0',
@@ -42,6 +44,7 @@ def enqueueOutput(out, queue):
 
 def changeDuty(num):
     ser.write(pyvesc.encode(pyvesc.SetDutyCycle(num)))
+    time.sleep(SLEEP_TIME)
 
 def changeBrake(num):
     ser.write(pyvesc.encode(pyvesc.SetCurrentBrake(num)))
@@ -63,7 +66,7 @@ while True:
     except Empty:
         continue
     else:
-        sys.stdout.write(newInput)
+        sys.stdout.write(newInput + "\n")
         sys.stdout.flush()
 
     # Is it Brake or Accel?
@@ -92,29 +95,29 @@ while True:
 
         if newInput == "LEFT":
             if oldInput == "DOWN":
-                for i in range(int(SPEED_ONE/DIV_NUM), int(SPEED_ONE/DIV_NUM)):
-                    changeDuty(i*DIV_NUM)
+                for i in range(SPEED_ONE, SPEED_TWO):
+                    changeDuty(i)
             changeDuty(SPEED_TWO)
 
         if newInput == "UP":
             if oldInput == "LEFT":
-                for i in range(int(SPEED_ONE/DIV_NUM), int(SPEED_ONE/DIV_NUM)):
-                    changeDuty(i*DIV_NUM)
+                for i in range(SPEED_TWO, SPEED_THREE):
+                    changeDuty(i)
             if oldInput == "DOWN":
-                for i in range(int(SPEED_ONE/DIV_NUM), int(SPEED_ONE/DIV_NUM)):
-                    changeDuty(i*DIV_NUM)
+                for i in range(SPEED_ONE, SPEED_THREE):
+                    changeDuty(i)
             changeDuty(SPEED_THREE)
 
         if newInput == "RIGHT":
             if oldInput == "UP":
-                for i in range(int(SPEED_ONE/DIV_NUM), int(SPEED_ONE/DIV_NUM)):
-                    changeDuty(i*DIV_NUM)
+                for i in range(SPEED_THREE, SPEED_FOUR):
+                    changeDuty(i)
             if oldInput == "LEFT":
-                for i in range(int(SPEED_ONE/DIV_NUM), int(SPEED_ONE/DIV_NUM)):
-                    changeDuty(i*DIV_NUM)
+                for i in range(SPEED_TWO, SPEED_FOUR):
+                    changeDuty(i)
             if oldInput == "DOWN":
-                for i in range(int(SPEED_ONE/DIV_NUM), int(SPEED_ONE/DIV_NUM)):
-                    changeDuty(i*DIV_NUM)
+                for i in range(SPEED_ONE, SPEED_FOUR):
+                    changeDuty(i)
             changeDuty(SPEED_FOUR)
 
     if newInput == "HOME":

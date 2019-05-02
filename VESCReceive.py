@@ -22,8 +22,7 @@ SPEED_THREE = 30000
 SPEED_FOUR = 50000
 STOP = 0
 
-# Time for iteration to next speed
-SLEEP_TIME = 0.0001
+DIV_NUM = 10
 
 # Create a serial object to send serial messages
 ser = serial.Serial(
@@ -93,29 +92,29 @@ while True:
 
         if newInput == "LEFT":
             if oldInput == "DOWN":
-                for i in range(SPEED_ONE/10, SPEED_TWO/10):
-                    changeDuty(i)
+                for i in range(int(SPEED_ONE/DIV_NUM), int(SPEED_ONE/DIV_NUM)):
+                    changeDuty(i*DIV_NUM)
             changeDuty(SPEED_TWO)
 
         if newInput == "UP":
             if oldinput == "LEFT":
-                for i in range(SPEED_TWO/10, SPEED_THREE/10):
-                    changeDuty(i)
+                for i in range(int(SPEED_ONE/DIV_NUM), int(SPEED_ONE/DIV_NUM)):
+                    changeDuty(i*DIV_NUM)
             if oldInput == "DOWN":
-                for i in range(SPEED_ONE/10, SPEED_THREE/10):
-                    changeDuty(i)
+                for i in range(int(SPEED_ONE/DIV_NUM), int(SPEED_ONE/DIV_NUM)):
+                    changeDuty(i*DIV_NUM)
             changeDuty(SPEED_THREE)
 
         if newInput == "RIGHT":
             if oldinput == "UP":
-                for i in range(SPEED_THREE/10, SPEED_FOUR/10):
-                    changeDuty(i)
+                for i in range(int(SPEED_ONE/DIV_NUM), int(SPEED_ONE/DIV_NUM)):
+                    changeDuty(i*DIV_NUM)
             if oldinput == "LEFT":
-                for i in range(SPEED_TWO/10, SPEED_FOUR/10):
-                    changeDuty(i)
+                for i in range(int(SPEED_ONE/DIV_NUM), int(SPEED_ONE/DIV_NUM)):
+                    changeDuty(i*DIV_NUM)
             if oldinput == "DOWN":
-                for i in range(SPEED_ONE/10, SPEED_FOUR/10):
-                    changeDuty(i)
+                for i in range(int(SPEED_ONE/DIV_NUM), int(SPEED_ONE/DIV_NUM)):
+                    changeDuty(i*DIV_NUM)
             changeDuty(SPEED_FOUR)
 
     if newInput == "HOME":

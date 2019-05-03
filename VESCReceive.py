@@ -162,7 +162,7 @@ while True:
 
     # If controller is disconnected stop the script
     if newInput == "DISCONNECTED":
-
+        quit()
 
     oldInput = newInput
 

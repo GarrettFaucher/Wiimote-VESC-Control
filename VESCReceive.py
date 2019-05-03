@@ -53,16 +53,16 @@ def changeDuty(num):
 def changeBrake(num):
     ser.write(pyvesc.encode(pyvesc.SetCurrentBrake(num)))
 
-def lookForInput():
-    try:
-        newInput = str(queue.get_nowait()).rstrip()
-    except Empty:
-        continue
-    else:
-        sys.stdout.write(newInput + "\n")
-        sys.stdout.flush()
-
-    return newInput
+# def lookForInput():
+#     try:
+#         newInput = str(queue.get_nowait()).rstrip()
+#     except Empty:
+#         continue
+#     else:
+#         sys.stdout.write(newInput + "\n")
+#         sys.stdout.flush()
+#
+#     return newInput
 
 # Function to simplify the gradual increase of speed if stepping up
 def stepUp(speedStart, speedEnd):

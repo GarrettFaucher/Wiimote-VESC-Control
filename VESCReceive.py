@@ -68,8 +68,13 @@ def lookForInput():
 def stepUp(speedStart, speedEnd):
     for i in range(int(speedStart/DIV_CONST), int(speedEnd/DIV_CONST)):
         changeDuty(i*DIV_CONST)
-
-        newInput = lookForInput()
+        try:
+            newInput = str(queue.get_nowait()).rstrip()
+        except Empty:
+            continue
+        else:
+            sys.stdout.write(newInput + "\n")
+            sys.stdout.flush()
 
         if newInput == "A":
             break
@@ -90,7 +95,13 @@ tick = 0
 # Motor Control
 while True:
     # Get new input
-    newInput = lookForInput()
+    try:
+        newInput = str(queue.get_nowait()).rstrip()
+    except Empty:
+        continue
+    else:
+        sys.stdout.write(newInput + "\n")
+        sys.stdout.flush()
 
     # Is it Brake or Accel?
     if newInput == "A" and go and tick == 0:

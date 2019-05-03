@@ -53,19 +53,8 @@ def changeDuty(num):
 def changeBrake(num):
     ser.write(pyvesc.encode(pyvesc.SetCurrentBrake(num)))
 
-# def lookForInput():
-#     try:
-#         newInput = str(queue.get_nowait()).rstrip()
-#     except Empty:
-#         continue
-#     else:
-#         sys.stdout.write(newInput + "\n")
-#         sys.stdout.flush()
-#
-#     return newInput
-
 # Function to simplify the gradual increase of speed if stepping up
-def stepUp(speedStart, speedEnd):
+def stepUp(speedStart, speedEnd, input):
     for i in range(int(speedStart/DIV_CONST), int(speedEnd/DIV_CONST)):
         changeDuty(i*DIV_CONST)
         try:
@@ -76,7 +65,7 @@ def stepUp(speedStart, speedEnd):
             sys.stdout.write(newInput + "\n")
             sys.stdout.flush()
 
-        if newInput == "A":
+        if newInput != input:
             break
 
 # Starting the input process and thread
@@ -130,27 +119,27 @@ while True:
         # Speed 2
         if newInput == "LEFT":
             if oldInput == "DOWN":
-                stepUp(SPEED_ONE, SPEED_TWO)
+                stepUp(SPEED_ONE, SPEED_TWO, "LEFT")
             else:
                 changeDuty(SPEED_TWO)
 
         # Speed 3
         if newInput == "UP":
             if oldInput == "LEFT":
-                stepUp(SPEED_TWO, SPEED_THREE)
+                stepUp(SPEED_TWO, SPEED_THREE, "UP")
             elif oldInput == "DOWN":
-                stepUp(SPEED_ONE, SPEED_THREE)
+                stepUp(SPEED_ONE, SPEED_THREE, "UP")
             else:
                 changeDuty(SPEED_THREE)
 
         # Speed 4
         if newInput == "RIGHT":
             if oldInput == "UP":
-                stepUp(SPEED_THREE, SPEED_FOUR)
+                stepUp(SPEED_THREE, SPEED_FOUR, "RIGHT")
             elif oldInput == "LEFT":
-                stepUp(SPEED_TWO, SPEED_FOUR)
+                stepUp(SPEED_TWO, SPEED_FOUR, "RIGHT")
             elif oldInput == "DOWN":
-                stepUp(SPEED_ONE, SPEED_FOUR)
+                stepUp(SPEED_ONE, SPEED_FOUR, "RIGHT")
             else:
                 changeDuty(SPEED_FOUR)
 

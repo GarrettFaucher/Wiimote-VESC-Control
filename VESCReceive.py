@@ -79,8 +79,6 @@ def stepUp(speedStart, speedEnd):
         if newInput == "A":
             break
 
-
-
 # Starting the input process and thread
 process = Popen(['/usr/bin/node', 'pipe.js'], stdout=PIPE)
 queue = Queue()
@@ -159,10 +157,6 @@ while True:
     # Emergency off switch
     if newInput == "HOME":
             changeDuty(STOP)
-
-    # If controller is disconnected stop the script
-    if newInput == "DISCONNECTED":
-        quit()
 
     oldInput = newInput
 
